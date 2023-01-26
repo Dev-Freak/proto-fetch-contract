@@ -11,15 +11,18 @@ const Contract = () => {
 
     const idContract = parseInt(e.target["contractId"].value);
 
-    const res = await fetchAPI("fetchContract", { idContract: isNaN(idContract) ? 0 : idContract });
+    const contract = await fetchAPI("fetchContract", {
+      idContract: isNaN(idContract) ? 0 : idContract,
+    });
+    const contractData = contract["0"];
 
     setContract({
-      name: res["0"]["id_contrato"],
-      description: res["0"]["descripcion_del_proceso"],
-      dateStart: res["0"]["fecha_de_inicio_del_contrato"],
-      dateEnd: res["0"]["fecha_de_fin_del_contrato"],
-      sector: res["0"]["descripcion_del_proceso"],
-      docs: res.documents,
+      name: contractData["id_contrato"],
+      description: contractData["descripcion_del_proceso"],
+      dateStart: contractData["fecha_de_inicio_del_contrato"],
+      dateEnd: contractData["fecha_de_fin_del_contrato"],
+      sector: contractData["descripcion_del_proceso"],
+      docs: contract.documents,
     });
   };
 
