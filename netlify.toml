@@ -1,0 +1,10 @@
+[build]
+# Default build command.
+# command = "npm run build"
+# Directory with the serverless Lambda functions to deploy to AWS.
+    functions = "src/functions"
+
+[[redirects]]
+    from = "api/*"
+    to = "/.netlify/functions/:splat"
+    status = 200
